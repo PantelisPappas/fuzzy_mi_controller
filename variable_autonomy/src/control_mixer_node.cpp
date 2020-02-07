@@ -70,9 +70,12 @@ ControlMixer::ControlMixer()
 // reads control mode topic to inform class internal variable
 void ControlMixer::loaCallback(const std_msgs::String::ConstPtr& msg)
 {
-    do{
-        valid_loa_ = false;
-        ROS_INFO("Please choose a valid control mode.");
+    if (int flag =! 1){
+
+              valid_loa_ = false;
+              ROS_INFO("Please choose a valid control mode.");
+              flag = 1;
+      }
 
 
     if (msg->data == "Stop")
@@ -80,7 +83,6 @@ void ControlMixer::loaCallback(const std_msgs::String::ConstPtr& msg)
         loa_ = "Stop";
         valid_loa_ = true;
         ROS_INFO("Stop robot");
-        break;
     }
     else if (msg->data == "Teleoperation")
     {
@@ -90,7 +92,6 @@ void ControlMixer::loaCallback(const std_msgs::String::ConstPtr& msg)
         cmd_vel_for_robot_.angular.z = 0;
         vel_for_robot_pub_.publish(cmd_vel_for_robot_); // solves bug in which last auto msg if propagated in teleop
         ROS_INFO("Control mode: Teleoperation");
-        break;
     }
     else if (msg->data == "Autonomy")
       //case 2
@@ -101,9 +102,8 @@ void ControlMixer::loaCallback(const std_msgs::String::ConstPtr& msg)
         cmd_vel_for_robot_.angular.z = 0;
         vel_for_robot_pub_.publish(cmd_vel_for_robot_); // solves bug in which last teleop msg if propagated in auto
         ROS_INFO("Control mode: Autonomy");
-        break;
     }
-    }while(0);
+
 }
 
 

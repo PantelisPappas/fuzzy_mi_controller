@@ -1,4 +1,5 @@
 ﻿
+
 #include <ros/ros.h>
 #include <std_msgs/String.h>
 #include <sound_play/sound_play.h>
@@ -42,7 +43,7 @@ void StatusSoundPublisher::loaCallBack(const std_msgs::String::ConstPtr& mode)
                 sound_client_.say("stoped");
         }
 
-        else if (mode->data == "Teleoparation")
+        else if (mode->data == "Teleoperation")
         {
                 sound_client_.playWaveFromPkg("variable_autonomy","auto_pilot.wav");
                 ros::Duration(1.2).sleep();

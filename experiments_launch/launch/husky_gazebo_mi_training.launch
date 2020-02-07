@@ -57,7 +57,7 @@
 
   <!-- cmd mixer for choosing autonomy mode or e.g. emergency stop if nav doesnt work good. (buttons for teleoperation - stop - autonomy mode) -->
   <!-- In xbox controller Y = teleop , A = auto , LB = stop (in any case) -->
-  <node pkg="variable_autonomy" type="control_mixer_node" name="control_mixer" output="screen">
+  <node pkg="loa_switcher" type="loa_switcher_node" name="loa_switcher_node" output="screen">
     <remap from="/cmd_vel" to="/husky_velocity_controller/cmd_vel"/>
   </node>
 

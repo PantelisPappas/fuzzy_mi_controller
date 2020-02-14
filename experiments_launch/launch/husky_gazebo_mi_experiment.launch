@@ -50,14 +50,14 @@
   </node>
 
   <!-- teleoperation node -->
-  <node pkg="mixed_initiative_teleop" type="mixed_initiative_teleop" name="mi_teleop" output="screen">
+  <node pkg="teleop_loa" type="teleop_loa" name="teleop_loa" output="screen">
     <param name="scale_linear" value="$(arg scale_linear)"/>
     <param name="scale_angular" value="$(arg scale_angular)"/>
   </node>
 
   <!-- cmd mixer for choosing autonomy mode or e.g. emergency stop if nav doesnt work good. (buttons for teleoperation - stop - autonomy mode) -->
   <!-- In xbox controller Y = teleop , A = auto , LB = stop (in any case) -->
-  <node pkg="variable_autonomy" type="control_mixer_node" name="control_mixer" output="screen">
+  <node pkg="loa_switcher" type="loa_switcher_node" name="loa_switcher_node" output="screen">
     <remap from="/cmd_vel" to="/husky_velocity_controller/cmd_vel"/>
   </node>
 
@@ -96,5 +96,9 @@
 
   <!-- Hector trajectory server for keeping history and visualizing of all the paths visited -->
   <node pkg="hector_trajectory_server" type="hector_trajectory_server" name="trajectory_server" output="screen"/>
+
+<!--Shared Control -->
+<node pkg="loa_vfh" type="vfh_node" name="vfh_node" output="screen"/>
+<node pkg="shared_control_node" type="shared_control_node" name="shared_control_node" output="screen"/>
 
 </launch>

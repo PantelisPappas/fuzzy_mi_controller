@@ -101,4 +101,8 @@
   <!-- Hector trajectory server for keeping history and visualizing of all the paths visited -->
   <node pkg="hector_trajectory_server" type="hector_trajectory_server" name="trajectory_server" output="screen"/>
 
+   <!--Shared Control -->
+   <node pkg="loa_vfh" type="vfh_node" name="vfh_node" output="screen"/>
+   <node pkg="shared_control_node" type="shared_control_node" name="shared_control_node" output="screen"/>
+
 </launch>
